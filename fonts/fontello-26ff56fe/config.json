@@ -1,0 +1,28 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "fb3ee9c192c946342e0cdd12f06d7774",
+      "css": "lightbulb",
+      "code": 59392,
+      "src": "linecons"
+    },
+    {
+      "uid": "dc73bee1d58539abe8c96b958bf4c931",
+      "css": "fire",
+      "code": 59393,
+      "src": "elusive"
+    },
+    {
+      "uid": "599d6c088f4a1c64611b989459d65f6b",
+      "css": "lightbulb-1",
+      "code": 59394,
+      "src": "elusive"
+    }
+  ]
+}
