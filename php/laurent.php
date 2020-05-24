@@ -1,11 +1,11 @@
 <?php
-	if(count($_GET) == 1) {
+	if(count($_GET[]) == 1) {
 		$res = file_get_contents("http://" . $_GET['ip'] . "/status.xml");
 		$xml = simplexml_load_string($res);
 		echo json_encode($xml);
 	} 
 
-	if(count($_GET) > 1) {
+	if(count($_GET[]) > 1) {
 		echo "больше"
 	}
 	//echo $res;
