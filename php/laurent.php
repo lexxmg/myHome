@@ -34,6 +34,8 @@
 					$resOut = file_get_contents("http://" . $_GET['ip'] . "/server.cgi?data=OUT," . $_GET['out']);
 					if($resOut == "Success! DONE") {
 						echo "OK";
+						usleep(500000);
+						file_get_contents("http://" . $_GET['ip'] . "/server.cgi?data=OUT," . $_GET['out']);
 					}
 				}	
 			}
