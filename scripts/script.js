@@ -21,20 +21,21 @@ $(function(){
 		btnSort[i].css({'order': i });
 	}
 
-	let outStatus;
-
 	function btnStat(){
-		$.get('/xmlJson.php', {'ip': ip}, function(res){
+		$.get('/lexx/myHome/php/laurent.php', {'ip': ip}, function(res){
 			outStatus = JSON.parse(res).out_table0;
-		});	
-		for(let i = 0; i < btn.length; i++){
-			if(outStatus.charAt(i) == 1) {
-				btn[i].find('button').css({'color': 'white', 'border-color': 'white'});
-			} else {
-				btn[i].find('button').css({'color': 'gray', 'border-color': 'black'});
+		
+			for(let i = 0; i < btn.length; i++){
+				if(outStatus.charAt(i) == 1) {
+					btn[i].find('button').css({'color': 'white', 'border-color': 'white'});
+				} else {
+					btn[i].find('button').css({'color': 'gray', 'border-color': 'black'});
+				}
 			}
-		}		
+		});			
 	}
+
+	var outStatus = 0;	
 
 	//$.get('/xmlJson.php', {'ip': ip}, function(res){
 	//	console.log(JSON.parse(res).out_table0);
@@ -43,6 +44,8 @@ $(function(){
 	btnStat();
 
 	setInterval(btnStat, 1000);
+
+  console.log(outStatus);
 
 	function btnOut(out, stat){  
 		if(stat == 'toggle'){
@@ -99,18 +102,6 @@ $(function(){
 	  }  
 	}							
 
-	function btnStat(){
-		for(let i = 0; i < btn.length; i++){
-			$.get('/xmlJson.php', {'ip': ip}, function(res){
-				outStatus = JSON.parse(res).out_table0;
-				if(outStatus.charAt(i) == 1) {
-					btn[i].find('button').css({'color': 'white', 'border-color': 'white'});
-				} else {
-					btn[i].find('button').css({'color': 'gray', 'border-color': 'black'});
-				}
-			});
-		}					
-	}
 
 	/*
 	$('.container-btn__section-1').on('click', 'button', function(){
@@ -152,6 +143,7 @@ $(function(){
 
 	btn[8].on('click', function(){
 		btnOut(9, 'toggle');
+		console.log(outStatus);
 	});
 
 	btn[9].on('click', function(){
