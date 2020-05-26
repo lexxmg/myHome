@@ -21,6 +21,8 @@ $(function(){
 		btnSort[i].css({'order': i });
 	}
 
+	let outStatus;
+
 	function btnStat(){
 		$.get('/lexx/myHome/php/laurent.php', {'ip': ip}, function(res){
 			outStatus = JSON.parse(res).out_table0;
@@ -35,7 +37,6 @@ $(function(){
 		});			
 	}
 
-	var outStatus = 0;	
 
 	//$.get('/xmlJson.php', {'ip': ip}, function(res){
 	//	console.log(JSON.parse(res).out_table0);
@@ -45,11 +46,9 @@ $(function(){
 
 	setInterval(btnStat, 1000);
 
-  console.log(outStatus);
-
 	function btnOut(out, stat){  
 		if(stat == 'toggle'){
-			$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
+			$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'toggle'}, function(res){
 				if(res == 'Success! DONE'){
 					console.log(res);
 		  	}
@@ -58,48 +57,30 @@ $(function(){
 	  }
 
 	  if(stat == 'on'){
-	  	if(outStatus.charAt(out - 1) == 0) {
-	  		$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-					if(res == 'Success! DONE'){
-						console.log(res);
-		  		}
+	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'on'}, function(res){
+				if(res == 'Success! DONE'){
+					console.log(res);
+		  	}
 		  	btnStat();
-				});
-	  	}
+			});
 	  }
 
 	  if(stat == 'off'){
-	  	if(outStatus.charAt(out - 1) == 1) {
-	  		$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-					if(res == 'Success! DONE'){
-						console.log(res);
-		  		}
+	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'off'}, function(res){
+				if(res == 'Success! DONE'){
+					console.log(res);
+		  	}
 		  	btnStat();
-				});
-	  	}
+			});
 	  }
 
 	  if(stat == 'auto'){
-	  	if(outStatus.charAt(out - 1) == 0) {
-	  		$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-					if(res == 'Success! DONE'){
-						console.log(res);
-		  		}
-		  	btnStat();
-				});
-	  	}
-	  	
-	  	setTimeout(function(){
-	  		if(outStatus.charAt(out - 1) == 1) {
-	  		 	$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-						if(res == 'Success! DONE'){
-							console.log(res);
-		  			}
-		  		btnStat();
-		  		});	
-				}
-	  	}, 500);
-	  }  
+	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'auto'}, function(res){	
+			}).done(function(){
+				btnStat();
+				console.log('ok');
+			});
+		}	
 	}							
 
 
@@ -142,8 +123,7 @@ $(function(){
 	});
 
 	btn[8].on('click', function(){
-		btnOut(9, 'toggle');
-		console.log(outStatus);
+		btnOut(9, 'auto');
 	});
 
 	btn[9].on('click', function(){
