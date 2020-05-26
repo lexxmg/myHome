@@ -21,7 +21,9 @@ $(function(){
 		btnSort[i].css({'order': i });
 	}
 
-	let outStatus;
+	let outStatus,
+			timerId,
+			refresh = 1000;
 
 	function btnStat(){
 		$.get('/lexx/myHome/php/laurent.php', {'ip': ip}, function(res){
@@ -44,41 +46,38 @@ $(function(){
 
 	btnStat();
 
-	setInterval(btnStat, 1000);
+	timerId = setInterval(btnStat, refresh);
+
 
 	function btnOut(out, stat){  
 		if(stat == 'toggle'){
 			$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'toggle'}, function(res){
-				if(res == 'Success! DONE'){
-					console.log(res);
-		  	}
-		  	btnStat();
-			});
+			}).done(btnStat);
 	  }
 
 	  if(stat == 'on'){
 	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'on'}, function(res){
-				if(res == 'Success! DONE'){
-					console.log(res);
-		  	}
-		  	btnStat();
-			});
-	  }
+			}).done(btnStat);
+	  }	
 
 	  if(stat == 'off'){
 	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'off'}, function(res){
-				if(res == 'Success! DONE'){
-					console.log(res);
-		  	}
-		  	btnStat();
-			});
+			}).done(btnStat);
 	  }
 
 	  if(stat == 'auto'){
+	  	clearTimeout(timerId);
+
+	  	refresh = 50;
+	  	timerId = setInterval(btnStat, refresh);
+	  	console.log(refresh + ' ' + timerId);
 	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'auto'}, function(res){	
 			}).done(function(){
+				clearTimeout(timerId);
+				refresh = 1000;
+				timerId = setInterval(btnStat, refresh);
 				btnStat();
-				console.log('ok');
+				console.log(refresh + ' ' + timerId);
 			});
 		}	
 	}							
@@ -123,7 +122,7 @@ $(function(){
 	});
 
 	btn[8].on('click', function(){
-		btnOut(9, 'auto');
+		btnOut(9, 'toggle');
 	});
 
 	btn[9].on('click', function(){

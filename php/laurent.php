@@ -30,6 +30,10 @@
 			}
 
 			if($_GET['st'] == 'auto') {
+				if(mb_substr($out, $_GET['out'] - 1, 1) == 1) {
+					file_get_contents("http://" . $_GET['ip'] . "/server.cgi?data=OUT," . $_GET['out']);
+				}
+
 				if(mb_substr($out, $_GET['out'] - 1, 1) == 0){
 					$resOut = file_get_contents("http://" . $_GET['ip'] . "/server.cgi?data=OUT," . $_GET['out']);
 					if($resOut == "Success! DONE") {
