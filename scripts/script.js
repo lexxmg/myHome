@@ -2,7 +2,7 @@ $(function(){
 	const ip = '192.168.0.101',
 				btnContainer = $('.container-btn__container'),
 				btnPopup = $('.heading-container__button'),
-				popup = $('.container-scripts__buttons');
+				popup = $('.container-hiding');
 
 
 	const btn = [ 
@@ -143,7 +143,6 @@ $(function(){
 			btnPopup.addClass('js-heading-container__button-rotate');
 			popup.slideDown(function(){
 				btnPopup.attr('aria-expanded', 'true');
-				popup.css('display', 'flex');
 			});
 		}	else {
 			btnPopup.removeClass('js-heading-container__button-rotate');
