@@ -2,7 +2,7 @@ $(function(){
 	const ip = '192.168.0.101',
 				btnContainer = $('.container-btn__container'),
 				btnPopup = $('.heading-container__button'),
-				popup = $('.container-scripts__buttons');
+				popup = $('.container-hiding');
 
 
 	const btn = [ 
@@ -21,20 +21,24 @@ $(function(){
 		btnSort[i].css({'order': i });
 	}
 
-	let outStatus;
+	let outStatus,
+			timerId,
+			refresh = 1000;
 
 	function btnStat(){
-		$.get('/xmlJson.php', {'ip': ip}, function(res){
+		$.get('/lexx/myHome/php/laurent.php', {'ip': ip}, function(res){
 			outStatus = JSON.parse(res).out_table0;
-		});	
-		for(let i = 0; i < btn.length; i++){
-			if(outStatus.charAt(i) == 1) {
-				btn[i].find('button').css({'color': 'white', 'border-color': 'white'});
-			} else {
-				btn[i].find('button').css({'color': 'gray', 'border-color': 'black'});
+		
+			for(let i = 0; i < btn.length; i++){
+				if(outStatus.charAt(i) == 1) {
+					btn[i].find('button').css({'color': 'white', 'border-color': 'white'});
+				} else {
+					btn[i].find('button').css({'color': 'gray', 'border-color': 'black'});
+				}
 			}
-		}		
+		});			
 	}
+
 
 	//$.get('/xmlJson.php', {'ip': ip}, function(res){
 	//	console.log(JSON.parse(res).out_table0);
@@ -42,75 +46,42 @@ $(function(){
 
 	btnStat();
 
-	setInterval(btnStat, 1000);
+	timerId = setInterval(btnStat, refresh);
+
 
 	function btnOut(out, stat){  
 		if(stat == 'toggle'){
-			$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-				if(res == 'Success! DONE'){
-					console.log(res);
-		  	}
-		  	btnStat();
-			});
+			$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'toggle'}, function(res){
+			}).done(btnStat);
 	  }
 
 	  if(stat == 'on'){
-	  	if(outStatus.charAt(out - 1) == 0) {
-	  		$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-					if(res == 'Success! DONE'){
-						console.log(res);
-		  		}
-		  	btnStat();
-				});
-	  	}
-	  }
+	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'on'}, function(res){
+			}).done(btnStat);
+	  }	
 
 	  if(stat == 'off'){
-	  	if(outStatus.charAt(out - 1) == 1) {
-	  		$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-					if(res == 'Success! DONE'){
-						console.log(res);
-		  		}
-		  	btnStat();
-				});
-	  	}
+	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'off'}, function(res){
+			}).done(btnStat);
 	  }
 
 	  if(stat == 'auto'){
-	  	if(outStatus.charAt(out - 1) == 0) {
-	  		$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-					if(res == 'Success! DONE'){
-						console.log(res);
-		  		}
-		  	btnStat();
-				});
-	  	}
-	  	
-	  	setTimeout(function(){
-	  		if(outStatus.charAt(out - 1) == 1) {
-	  		 	$.get('http://' + ip + '/server.cgi?data&OUT,' + out, function(res){
-						if(res == 'Success! DONE'){
-							console.log(res);
-		  			}
-		  		btnStat();
-		  		});	
-				}
-	  	}, 500);
-	  }  
+	  	clearTimeout(timerId);
+
+	  	refresh = 50;
+	  	timerId = setInterval(btnStat, refresh);
+	  	console.log(refresh + ' ' + timerId);
+	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'auto'}, function(res){	
+			}).done(function(){
+				clearTimeout(timerId);
+				refresh = 1000;
+				timerId = setInterval(btnStat, refresh);
+				btnStat();
+				console.log(refresh + ' ' + timerId);
+			});
+		}	
 	}							
 
-	function btnStat(){
-		for(let i = 0; i < btn.length; i++){
-			$.get('/xmlJson.php', {'ip': ip}, function(res){
-				outStatus = JSON.parse(res).out_table0;
-				if(outStatus.charAt(i) == 1) {
-					btn[i].find('button').css({'color': 'white', 'border-color': 'white'});
-				} else {
-					btn[i].find('button').css({'color': 'gray', 'border-color': 'black'});
-				}
-			});
-		}					
-	}
 
 	/*
 	$('.container-btn__section-1').on('click', 'button', function(){
@@ -172,7 +143,6 @@ $(function(){
 			btnPopup.addClass('js-heading-container__button-rotate');
 			popup.slideDown(function(){
 				btnPopup.attr('aria-expanded', 'true');
-				popup.css('display', 'flex');
 			});
 		}	else {
 			btnPopup.removeClass('js-heading-container__button-rotate');
