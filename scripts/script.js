@@ -2,6 +2,9 @@ $(function(){
 	const ip = '192.168.0.101',
 				btnContainer = $('.container-btn__container'),
 				btnPopup = $('.heading-container__button'),
+				btnSet = $('.container-settings__btn'),
+				temp = $('.js-temp'),
+				formSet = $('.container-settings__form'),
 				popup = $('.container-hiding');
 
 
@@ -21,13 +24,15 @@ $(function(){
 		btnSort[i].css({'order': i });
 	}
 
-	let outStatus,
-			timerId,
+	let timerId,
 			refresh = 1000;
 
 	function btnStat(){
 		$.get('/lexx/myHome/php/laurent.php', {'ip': ip}, function(res){
-			outStatus = JSON.parse(res).out_table0;
+			let outStatus = JSON.parse(res).out_table0;
+			let outTemp = JSON.parse(res).temper0;
+
+			temp.text(outTemp);
 		
 			for(let i = 0; i < btn.length; i++){
 				if(outStatus.charAt(i) == 1) {
@@ -135,6 +140,18 @@ $(function(){
  
   btn[11].on('click', function(){
 		btnOut(12, 'auto');
+	});
+
+	btnSet.on('click', function(){
+		if($(this).attr('aria-expanded') == 'false'){
+			formSet.slideDown(function(){
+				btnSet.attr('aria-expanded', 'true');
+			});
+		} else {
+			formSet.slideUp(function(){
+				btnSet.attr('aria-expanded', 'false');
+			});
+		}
 	});
 	
 
