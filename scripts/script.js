@@ -46,7 +46,7 @@ $(function(){
 
 	function getSet(){
 		$.get('/lexx/myHome/php/set.php', function(response){
-			$('.js-timer').val(response);
+			$('.js-timer').val(response.timer);
 		});
 	};
 
