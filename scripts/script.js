@@ -152,7 +152,7 @@ $(function(){
 				btnSet.attr('aria-expanded', 'false');
 			});
 		}
-	});//
+	});
 	
 
 	btnPopup.on('click', function(){
