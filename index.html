@@ -16,21 +16,23 @@
 		<main class="main">
 			<div class="container-btn fixed-container">
 				<div class="container-settings">
-					<dev class="container-settings__top">
+					<div class="container-settings__top">
 						<div class="container-settings__inner inner-temp">
 							<span class="inner-temp__label icon-temperature-thermometer"></span>
 							<span class="inner-temp__temp js-temp">25</span>Cº
 						</div>
 
 						<button class="container-settings__btn icon-settingsfour-gearsalt"
-										aria-label="настройки">
+										aria-label="настройки"
+										aria-expanded="false"
+										aria-controls="set">
 						</button>
-					</dev>
+					</div>
 
-					<form class="containersettings__form form-settings" action="">
+					<form class="container-settings__form form-settings" action="#" id="set">
 						<div class="form-setting__inner">
 							<label class="form-settings__label">Tаймер выключения:
-								<input class="form-settings__input form-settings__input--little" type="text" name="timer">
+								<input class="form-settings__input form-settings__input--little" type="text" name="timer" maxlength="3">
 							</label>
 
 							<label class="form-settings__label">Вкл/Откл:
@@ -41,6 +43,8 @@
 						<label class="form-settings__label">ip:
 							<input class="form-settings__input" type="text" name="timer" placeholder="192.168.0.101">
 						</label>
+
+						<button class="form-settings__btn">Применить</button>
 					</form>
 				</div>
 
