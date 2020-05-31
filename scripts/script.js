@@ -50,6 +50,8 @@ $(function(){
 		});
 	};
 
+	getSet();
+
 
 	//$.get('/xmlJson.php', {'ip': ip}, function(res){
 	//	console.log(JSON.parse(res).out_table0);
