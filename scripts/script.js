@@ -44,6 +44,12 @@ $(function(){
 		});			
 	}
 
+	function getSet(){
+		$.get('/lexx/myHome/php/set.php', function(rasponse){
+			$('.js-timer').val(response);
+		});
+	};
+
 
 	//$.get('/xmlJson.php', {'ip': ip}, function(res){
 	//	console.log(JSON.parse(res).out_table0);
