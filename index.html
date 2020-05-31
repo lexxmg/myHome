@@ -7,6 +7,7 @@
 		
 		<link rel="stylesheet" href="styles/normalize.css">
 		<link rel="stylesheet" href="styles/style.css">
+		<link rel="stylesheet" href="styles/settings.css">
 		<link rel="stylesheet" href="styles/main.css">
 		<link rel="stylesheet" href="whhg-font/css/whhg.css">
 	</head>
@@ -14,6 +15,33 @@
 	<body>
 		<main class="main">
 			<div class="container-btn fixed-container">
+				<div class="container-settings">
+					<dev class="container-settings__top">
+						<div class="container-settings__inner inner-temp">
+							<span class="inner-temp__label icon-temperature-thermometer"></span>
+							<span class="inner-temp__temp js-temp">25</span>Cº
+						</div>
+
+						<button class="container-settings__btn icon-settingsfour-gearsalt"></button>
+					</dev>
+
+					<form class="containersettings__form form-settings" action="">
+						<div class="form-setting__inner">
+							<label class="form-settings__label">Tаймер выключения:
+								<input class="form-settings__input" type="text" name="timer">
+							</label>
+
+							<label class="form-settings__label">Вкл/Откл:
+								<input class="form-settings__input" type="checkbox" name="ceck">
+							</label>
+						</div>
+
+						<label class="form-settings__label form-settings--block">ip:
+							<input class="form-settings__input" type="text" name="timer" placeholder="192.168.0.101">
+						</label>
+					</form>
+				</div>
+
 				<div class="container-scripts">
 					<div class="heading-container">
 						<h2 class="heading-container__heading">Сценарии</h2>
