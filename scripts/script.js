@@ -3,6 +3,7 @@ $(function(){
 				btnContainer = $('.container-btn__container'),
 				btnPopup = $('.heading-container__button'),
 				btnSet = $('.container-settings__btn'),
+				setForm = $('.container-settings__form'),
 				temp = $('.js-temp'),
 				formSet = $('.container-settings__form'),
 				popup = $('.container-hiding');
@@ -48,8 +49,7 @@ $(function(){
 		$.get('/lexx/myHome/php/set.php', function(response){
 			const res = JSON.parse(response);
 			$('.js-timer').val(res.timer);
-			console.log(response);
-			console.log(response.timer);
+			$('.js-ip').val(res.ip);
 		});
 	};
 
@@ -164,7 +164,13 @@ $(function(){
 			});
 		}
 	});
-	
+
+	setForm.on('submit', function(event){
+		event.preventDefault();
+		$.get($(this).attr('action'),
+					$(this).serialize())
+					.done(alert('данные записаны'));
+	});
 
 	btnPopup.on('click', function(){
 		if(btnPopup.attr('aria-expanded') == 'false') {
