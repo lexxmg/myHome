@@ -2,7 +2,13 @@
 $path = '../settings.json';
 
 if(count($_GET) > 1){
-	$arr = array('timer' => $_GET['timer'], 'ip' => $_GET['ip']);
+$ch;
+	if(isset($_GET['check'])){
+		$ch = on;
+	} else {
+		$ch = off;
+	}	
+	$arr = array('timer' => $_GET['timer'], 'ip' => $_GET['ip'], 'check' => $ch);
 	file_put_contents($path, json_encode($arr));
 } else {
 	echo file_get_contents($path);

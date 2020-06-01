@@ -48,8 +48,15 @@ $(function(){
 	function getSet(){
 		$.get('/lexx/myHome/php/set.php', function(response){
 			const res = JSON.parse(response);
+			console.log(res.ip);
 			$('.js-timer').val(res.timer);
 			$('.js-ip').val(res.ip);
+
+			if(res.check == 'on') {
+				$('.js-check').prop('checked', true);
+			} else {
+				$('.js-check').prop('checked', false);
+			}
 		});
 	};
 
