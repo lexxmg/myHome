@@ -1,5 +1,6 @@
 $(function(){
 	const ip = '192.168.0.101',
+				path = '/', 	
 				btnContainer = $('.container-btn__container'),
 				btnPopup = $('.heading-container__button'),
 				btnSet = $('.container-settings__btn'),
@@ -29,7 +30,7 @@ $(function(){
 			refresh = 1000;
 
 	function btnStat(){
-		$.get('/lexx/myHome/php/laurent.php', {'ip': ip}, function(res){
+		$.get(path + 'php/laurent.php', {'ip': ip}, function(res){
 			let outStatus = JSON.parse(res).out_table0;
 			let outTemp = JSON.parse(res).temper0;
 
@@ -46,7 +47,7 @@ $(function(){
 	}
 
 	function getSet(){
-		$.get('/lexx/myHome/php/set.php', function(response){
+		$.get(path + 'php/set.php', function(response){
 			const res = JSON.parse(response);
 			console.log(res.ip);
 			$('.js-timer').val(res.timer);
@@ -74,17 +75,17 @@ $(function(){
 
 	function btnOut(out, stat){  
 		if(stat == 'toggle'){
-			$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'toggle'}, function(res){
+			$.get(path + 'php/laurent.php', {'ip': ip, 'out': out, 'st': 'toggle'}, function(res){
 			}).done(btnStat);
 	  }
 
 	  if(stat == 'on'){
-	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'on'}, function(res){
+	  	$.get(path + 'php/laurent.php', {'ip': ip, 'out': out, 'st': 'on'}, function(res){
 			}).done(btnStat);
 	  }	
 
 	  if(stat == 'off'){
-	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'off'}, function(res){
+	  	$.get(path + 'php/laurent.php', {'ip': ip, 'out': out, 'st': 'off'}, function(res){
 			}).done(btnStat);
 	  }
 
@@ -94,7 +95,7 @@ $(function(){
 	  	refresh = 50;
 	  	timerId = setInterval(btnStat, refresh);
 	  	console.log(refresh + ' ' + timerId);
-	  	$.get('/lexx/myHome/php/laurent.php', {'ip': ip, 'out': out, 'st': 'auto'}, function(res){	
+	  	$.get(path + 'php/laurent.php', {'ip': ip, 'out': out, 'st': 'auto'}, function(res){	
 			}).done(function(){
 				clearTimeout(timerId);
 				refresh = 1000;

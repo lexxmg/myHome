@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: apache
+      dockerfile: Dockerfile
+    restart: unless-stopped  
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - 3001:80
+      # - 3016:443
+
+  
+# docker compose up web     
