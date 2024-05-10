@@ -96,3 +96,7 @@
 
 	color: white;
 }
+
+.lerning-btn-container--btn-big {
+	flex-basis: 100%;
+}
