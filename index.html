@@ -29,27 +29,53 @@
 						</button>
 					</div>
 
-					<form class="container-settings__form form-settings" action="/php/set.php" id="set">
-						<div class="form-setting__inner">
-							<label class="form-settings__label">Tаймер выключения:
-								<input class="form-settings__input form-settings__input--little js-timer" 
-											 type="text"
-											 inputmode="numeric" 
-											 name="timer"
-											 maxlength="3">
+					<div class="container-settings__form">
+						<form class="form-settings" action="/php/set.php" id="set">
+							<div class="form-setting__inner">
+								<label class="form-settings__label">Tаймер выключения:
+									<input class="form-settings__input form-settings__input--little js-timer" 
+												type="text"
+												inputmode="numeric" 
+												name="timer"
+												maxlength="3">
+								</label>
+
+								<label class="form-settings__label">Вкл/Откл:
+									<input class="form-settings__input js-check" type="checkbox" name="check">
+								</label>
+							</div>
+
+							<label class="form-settings__label">ip:
+								<input class="form-settings__input js-ip" type="text" name="ip" placeholder="192.168.0.101">
 							</label>
 
-							<label class="form-settings__label">Вкл/Откл:
-								<input class="form-settings__input js-check" type="checkbox" name="check">
-							</label>
+							<button class="form-settings__btn">Применить</button>
+						</form>
+
+						<div class="learning">
+							<h2 class="learning__title">Обучение зановески:</h2>
+
+							<div class="lerning__btn-container lerning-btn-container">
+								<button class="lerning-btn-container__btn btn-start-js">начать обучение
+									<span class="lerning-btn-container__text lerning-btn-container__text-timer-js"></span>
+								</button>
+								<div class="lerning-btn-container__left">
+									<button class="lerning-btn-container__btn-up btn-up-js">вверх</button>
+									<button class="lerning-btn-container__btn-up btn-up-stop-js">stop</button>
+									<button class="lerning-btn-container__btn-up-puls btn-up-puls-js">вверх пульс</button>
+								</div>
+								<div class="lerning-btn-container__right">
+									<button class="lerning-btn-container__btn-down btn-down-js">вниз</button>
+									<button class="lerning-btn-container__btn-down-puls btn-down-stop-js">stop</button>
+									<button class="lerning-btn-container__btn-down-puls btn-down-puls-js">вниз пульс</button>
+								</div>
+								<div class="lerning-btn-container__bottom">
+									<button class="lerning-btn-container__btn-fix btn-fix-up-js">зафиксировать вверху</button>
+									<button class="lerning-btn-container__btn-finish btn-finish-js">завершить</button>
+								</div>
+							</div>
 						</div>
-
-						<label class="form-settings__label">ip:
-							<input class="form-settings__input js-ip" type="text" name="ip" placeholder="192.168.0.101">
-						</label>
-
-						<button class="form-settings__btn">Применить</button>
-					</form>
+					</div>
 				</div>
 
 				<div class="container-scripts">
@@ -177,5 +203,6 @@
 
 		<script src="scripts/jquery-3.4.1.min.js"></script>
 		<script src="scripts/script.js"></script>
+		<script src="scripts/learning.js"></script>
 	</body>
 </html>
