@@ -27,6 +27,11 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libzip-dev 
 
+# RUN apt-get -y install cron
+# COPY cron /etc/cron.d/cron
+# RUN chmod 0644 /etc/cron.d/cron
+# RUN crontab /etc/cron.d/cron
+
 # Очищаем кэш
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # 
