@@ -10,24 +10,24 @@
   </head>
   
   <body>
-    <div id="div1" class="prokrutkaC2">
-      <div id="myfirstchartC" class="prokrutkaC"></div>
+    <div id="div1" class="chart-container">
+      <div id="myfirstchartC" class="chart"></div>
     </div>
 
-    <div id="div2" class="prokrutkaPPM2">
-      <div id="myfirstchartPPM" class="prokrutkaPPM"></div>
+    <div id="div2" class="chart-container">
+      <div id="myfirstchartPPM" class="chart"></div>
     </div>
 
-    <div id="div3" class="prokrutkaBMEt2">
-      <div id="myfirstchartBMEt" class="prokrutkaBMEt"></div>
+    <div id="div3" class="chart-container">
+      <div id="myfirstchartBMEt" class="chart"></div>
     </div>
 
-    <div id="div4" class="prokrutkaBMEp2">
-      <div id="myfirstchartBMEp" class="prokrutkaBMEp"></div>
+    <div id="div4" class="chart-container">
+      <div id="myfirstchartBMEp" class="chart"></div>
     </div>
 
-    <div id="div5" class="prokrutkaBMEh2">
-      <div id="myfirstchartBMEh" class="prokrutkaBMEh"></div>
+    <div id="div5" class="chart-container">
+      <div id="myfirstchartBMEh" class="chart"></div>
     </div>
 
     <script>
@@ -46,21 +46,10 @@
         divWidth = 300;
       }
 
-      $(".prokrutkaC").width(divWidth); // меняет значение width в стиле .prokrutka
-      $("#div1").scrollLeft(divWidth); // Прокручивает график в конец
-  
-      $(".prokrutkaPPM").width(divWidth); // меняет значение width в стиле .prokrutka
-      $("#div2").scrollLeft(divWidth); // Прокручивает график в конец
+      $('.chart').width(divWidth); // меняет значение width в стиле .chart
+      $('.chart').scrollLeft(divWidth); // Прокручивает график в конец
 
-      $(".prokrutkaBMEt").width(divWidth); // меняет значение width в стиле .prokrutka
-      $("#div3").scrollLeft(divWidth); // Прокручивает график в конец
-
-      $(".prokrutkaBMEp").width(divWidth); // меняет значение width в стиле .prokrutka
-      $("#div4").scrollLeft(divWidth); // Прокручивает график в конец
-
-      $(".prokrutkaBMEh").width(divWidth); // меняет значение width в стиле .prokrutka
-      $("#div5").scrollLeft(divWidth); // Прокручивает график в конец
-
+      
 
     //temp.push({ dat: dat, snup: tup, sndown: tdown, sncentre: tc })
 
